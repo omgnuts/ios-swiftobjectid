@@ -31,7 +31,7 @@ public class SearchAndDestroy implements Runnable {
 	public void run() {
 	
 		File dir = new File(path);
-		String[] extensions = new String[] { "xib" };
+		String[] extensions = new String[] { "xib", "storyboard" };
 		
 		try {
 			final List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true);
