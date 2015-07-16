@@ -3,7 +3,7 @@ package heroi;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XibFile {
+class XibFile {
 
 	private final String filename;
 	
@@ -15,15 +15,15 @@ public class XibFile {
 		this.filename = filename;
 	}
 	
-	public List<XibEntry> getEntries() {
+	List<XibEntry> getEntries() {
 		return this.entries;
 	}
 	
-	public void add(XibEntry entry) {
+	void add(XibEntry entry) {
 		entries.add(entry);	
 	}
 	
-	public void print() {
+	void print() {
 		System.out.println("Parsing file: " + filename);
 	}
 }

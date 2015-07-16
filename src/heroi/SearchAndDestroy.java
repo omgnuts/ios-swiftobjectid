@@ -17,7 +17,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class SearchAndDestroy implements Runnable {
+class SearchAndDestroy implements Runnable {
 
 	private final String path;
 	
@@ -38,7 +38,8 @@ public class SearchAndDestroy implements Runnable {
 			
 			for (File file : files) {
 				if (!file.canRead()) {
-					System.out.println("SKIPPING " + file.getCanonicalPath() + " (File may be locked or unreadable)");
+					System.out.println("SKIPPING " + file.getCanonicalPath() 
+							+ " (File may be locked or unreadable)");
 					break;
 				}
 				
@@ -50,12 +51,12 @@ public class SearchAndDestroy implements Runnable {
 			        content = findAndDestroy(file.getCanonicalPath(), content, baddpatt);
 			        if (content != null) {
 
-				        final String nFile = file.getCanonicalPath() + "o";
+				        final String nFile = file.getCanonicalPath();
 				        int count = 0; 
 				        String newFile;
 				        
 				        do {
-				        	newFile = nFile + "_" + count++;
+				        	newFile = nFile + "_" + (count++) + ".old";
 				        } while (new File(newFile).exists());
 				        
 				        FileUtils.copyFile(new File(file.getCanonicalPath()),
@@ -77,7 +78,7 @@ public class SearchAndDestroy implements Runnable {
 			"(\\w{3}-\\w{2}-\\w{3}|XXX-XX-XX)", Pattern.DOTALL);
 //			"(^\\w{3}-?\\w{2}-?\\w{3}$|^XXX-XX-XXX$)", Pattern.DOTALL);
 	
-	private static String findAndDestroy(final String filename, final String content, Pattern pattern) {
+	private String findAndDestroy(final String filename, final String content, Pattern pattern) {
 		if (content != null) {
 			Matcher matcher = pattern.matcher(content);
 			if (matcher.find()) {
@@ -87,7 +88,7 @@ public class SearchAndDestroy implements Runnable {
 		return null;
 	}
 	
-	private static String cleanXib(final String filename, String content) {
+	private String cleanXib(final String filename, String content) {
 		
 		final Document jdoc = Jsoup.parse(content);
 		Elements elems = jdoc.select("[id]");
@@ -117,12 +118,16 @@ public class SearchAndDestroy implements Runnable {
 			}
 		}
 
+		if (xibf.getEntries().size() == 0) return null;
+		
 		xibf.print();
 		
 		for (XibEntry entry : xibf.getEntries()) {
 			entry.print();
 			content = content.replace(entry.getOldId(), entry.getNewId());
 		}
+		
+		xibs.add(xibf);
 		
 		return content;
 		
