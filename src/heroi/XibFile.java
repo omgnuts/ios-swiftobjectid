@@ -22,5 +22,9 @@ public class XibFile {
 	public void add(XibEntry entry) {
 		entries.add(entry);	
 	}
+	
+	public void print() {
+		System.out.println("Parsing file: " + filename);
+	}
 }
 

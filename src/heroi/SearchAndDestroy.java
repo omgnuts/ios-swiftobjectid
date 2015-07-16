@@ -31,30 +31,36 @@ public class SearchAndDestroy implements Runnable {
 	public void run() {
 	
 		File dir = new File(path);
-		String[] extensions = new String[] { "xib", "storyboard" };
+		String[] extensions = new String[] { "storyboard", "xib" };
 		
 		try {
 			final List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true);
 			
-			
 			for (File file : files) {
+				if (!file.canRead()) {
+					System.out.println("SKIPPING " + file.getCanonicalPath() + " (File may be locked or unreadable)");
+					break;
+				}
+				
 				FileInputStream inputStream = new FileInputStream(file.getCanonicalPath());
 				try {
 			        String content = IOUtils.toString(inputStream);
 			        inputStream.close();
 			        
-			        final String nFile = file.getCanonicalPath() + "o";
-			        int count = 0; 
-			        String newFile;
-			        
-			        do {
-			        	newFile = nFile + "_" + count++;
-			        } while (new File(newFile).exists());
-			        
-			        FileUtils.copyFile(new File(file.getCanonicalPath()),
-			        		new File(newFile));
 			        content = findAndDestroy(file.getCanonicalPath(), content, baddpatt);
 			        if (content != null) {
+
+				        final String nFile = file.getCanonicalPath() + "o";
+				        int count = 0; 
+				        String newFile;
+				        
+				        do {
+				        	newFile = nFile + "_" + count++;
+				        } while (new File(newFile).exists());
+				        
+				        FileUtils.copyFile(new File(file.getCanonicalPath()),
+				        		new File(newFile));
+				        
 			    		FileUtils.writeStringToFile(file, content);
 			        }
 			    } finally {
@@ -106,13 +112,15 @@ public class SearchAndDestroy implements Runnable {
 				xibf.add(entry);
 				keys.add(newId);
 				
-				entry.print();
 			} else {
 				keys.add(id);
 			}
 		}
+
+		xibf.print();
 		
 		for (XibEntry entry : xibf.getEntries()) {
+			entry.print();
 			content = content.replace(entry.getOldId(), entry.getNewId());
 		}
 		

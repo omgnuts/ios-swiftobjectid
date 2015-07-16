@@ -27,6 +27,6 @@ public class XibEntry {
 	}
 	
 	public void print() {
-		System.out.println(tag + " : " + oldId + " : " + newId);
+		System.out.println(oldId + " : " + newId);
 	}
 }
