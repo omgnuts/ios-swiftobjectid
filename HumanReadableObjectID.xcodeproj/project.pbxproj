@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C317C09C1B5760D000D480BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C09B1B5760D000D480BF /* AppDelegate.swift */; };
-		C317C09E1B5760D000D480BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C09D1B5760D000D480BF /* ViewController.swift */; };
+		C317C09E1B5760D000D480BF /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C09D1B5760D000D480BF /* RootViewController.swift */; };
 		C317C0A01B5760D000D480BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C317C09F1B5760D000D480BF /* Images.xcassets */; };
 		C317C0A31B5760D000D480BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C317C0A11B5760D000D480BF /* Main.storyboard */; };
 		C317C0AF1B5760D000D480BF /* HumanReadableObjectIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C0AE1B5760D000D480BF /* HumanReadableObjectIDTests.swift */; };
@@ -28,7 +28,7 @@
 		C317C0961B5760D000D480BF /* HumanReadableObjectID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HumanReadableObjectID.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C317C09A1B5760D000D480BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C317C09B1B5760D000D480BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C317C09D1B5760D000D480BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C317C09D1B5760D000D480BF /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		C317C09F1B5760D000D480BF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C317C0A21B5760D000D480BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C317C0A81B5760D000D480BF /* HumanReadableObjectIDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HumanReadableObjectIDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				C317C09B1B5760D000D480BF /* AppDelegate.swift */,
-				C317C09D1B5760D000D480BF /* ViewController.swift */,
+				C317C09D1B5760D000D480BF /* RootViewController.swift */,
 				C317C09F1B5760D000D480BF /* Images.xcassets */,
 				C317C0A11B5760D000D480BF /* Main.storyboard */,
 				C317C0991B5760D000D480BF /* Supporting Files */,
@@ -208,7 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C317C09E1B5760D000D480BF /* ViewController.swift in Sources */,
+				C317C09E1B5760D000D480BF /* RootViewController.swift in Sources */,
 				C317C09C1B5760D000D480BF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,10 +327,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = HumanReadableObjectID/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = HumanReadableObjectID/asu_pid.entitlements;
 			};
 			name = Debug;
 		};
@@ -338,10 +340,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = HumanReadableObjectID/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = HumanReadableObjectID/asu_pid.entitlements;
 			};
 			name = Release;
 		};
