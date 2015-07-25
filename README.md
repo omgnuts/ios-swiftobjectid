@@ -7,9 +7,11 @@ Here’s small tool I made today to get rid of the oMg-fu-aPL
 # What does it do?
 
 Here’s a screenshot of how XCODE object ids look by default (the horror).
+
 ![alt text][before]
 
 And here is how they look like after.
+
 ![alt text][after]
 
 ## To use
